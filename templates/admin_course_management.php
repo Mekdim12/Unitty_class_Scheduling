@@ -11,7 +11,6 @@
     }
    
     if (isset($_POST['delete_button'])){
-        echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^6";
         $course_id =  $_POST['course_id'];
         $sql = "DELETE FROM course_information WHERE course_id='".$course_id."'";
         // $sql = "DELETE FROM employee WHERE userid='" . $_GET["userid"] . "'";
@@ -19,14 +18,12 @@
             $result = mysqlexec($sql);
             echo $result;
             if ($result) {
-                echo "<><><><><><><><><><>";
                 echo '
                         <script type="text/JavaScript">
                             document.getElementById("form-close-btn").click()
                             document.getElementById("open-success-modal").click 
                         </script>
                     ';
-                    // header("Location: admin_course_management.php");
             } else {
                 echo "**********************************?";
                 // show the failed message holder modal 

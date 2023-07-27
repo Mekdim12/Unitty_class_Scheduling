@@ -1,0 +1,168 @@
+
+body{
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    scroll-behavior: smooth;
+}   
+
+.TopHolder{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 90vh;
+   
+}
+.navbar{
+  opacity: 0.95;
+}
+
+.nav-item{
+    padding-left:25px;
+    padding-right: 20px;
+   
+}
+
+
+
+nav ul {
+    list-style: none;
+    text-align: center;
+  }
+  nav ul li {
+    display: inline-block;
+  }
+  nav ul li a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #aaa;
+    text-transform: uppercase;
+    margin: 0 10px;
+  }
+  nav ul li a,
+  nav ul li a:after,
+  nav ul li a:before {
+    transition: all .5s;
+  }
+
+  nav ul li a:hover {
+    color: #555;
+  }
+  
+  
+  /* stroke */
+  nav.stroke ul li a {
+    position: relative;
+  }
+  nav.stroke ul li a:after{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #aaa;
+    height: 1px;
+  }
+  nav.stroke ul li a:hover:after {
+    width: 100%;
+  }
+
+  .topGreetingHolder{
+    margin-top: 50px;
+  }
+  .greetingTextHolder_,.rightSideTextHolder_{
+        height: 90vh;
+        display: flex;
+        align-items: center;
+       
+  }
+  .rightSideTextHolder_{
+    opacity: 0.85;
+    background: linear-gradient(to bottom right, #f8f9fa 0%, #f8f9fa 50%, #FFB52E 50%,#FFB52E 100%);
+  }
+
+  .greetingTextHolder{
+    padding-left:5%;
+    font-size: 1.2em;
+  }
+  .greetingTextHolder > p{
+    padding-right: 150px;
+    text-align: justify;
+    font-size: 1.2em;
+  
+  }
+.gettingstarted:hover{
+  transition: ease 0.01s;
+  background-color: #FFB52E;
+  border: none;
+}
+  
+  .greetingTextHolder>h2{
+    font-weight: bold;
+    text-align: justify;
+    font-size:2.2em;
+  }
+
+  .lottiImageMiddleHolder{
+        position: absolute;
+        left:35%;
+        top:1%;
+        z-index: 10;
+        
+  }
+  .greetingTextHolder{
+    margin-bottom: 50px;
+  }
+
+  
+
+  .middleHolder,.BottomHolder{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+
+.aboutmiddle{
+  box-shadow:  #FFB52E 0px 1px 10px;
+}
+
+
+
+
+
+
+
+/* ---------------------login page ----------------- */
+
+.formHolder{
+  width: 500px;
+  height: 100vh;
+}
+
+h2 {
+  
+} 
+
+h2 span { 
+   background:#fff; 
+   padding:0 10px; 
+}
+
+
+
+.formmiddleLiner:after,
+.formmiddleLiner:before{
+
+    content:"\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+    text-decoration:line-through;
+}
+#forbackground{
+  background: linear-gradient(to bottom right, #f8f9fa 0%, #f8f9fa 50%, rgba(255, 181, 46, 0.5) 50%,rgba(255, 181, 46, 0.5) 100%); 
+
+}
