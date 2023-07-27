@@ -21,13 +21,13 @@
 <body>
     <a href=""><button>Manage Personal Infromation</button></a>
     <br> <br>
-    <a href=""><button>Manage Student Infromation</button></a>
+    <a href="admin_student_management.php"><button>Manage Student Infromation</button></a>
     <br> <br>
     <a href=""><button>Manage Teachers Infromation</button></a>
     <br> <br>
     <a href=""><button>Manage Class Room Infromation</button></a>
     <br> <br>
-    <a href=""><button>Manage Course Information</button></a>
+    <a href="admin_course_management.php"><button>Manage Course Information</button></a>
     <br>
     <br>
     <a href=""><button>Manage Schedules</button></a>
