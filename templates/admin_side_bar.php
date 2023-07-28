@@ -16,7 +16,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-person"></i></div>
                                 Manage Student
                             </a>
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="admin_classroom_management.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-school"></i></div>
                                 Manage Class Rooms
                             </a>
