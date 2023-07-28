@@ -1,6 +1,6 @@
 <?php session_start(); ?>
-<?php require_once("../db_connection/db_conn.php"); ?>
-<?php include_once("../includes/basic_functions.php");?> 
+<?php require("../db_connection/db_conn.php"); ?>
+<?php include("../includes/basic_functions.php");?> 
 
 <?php
 
@@ -11,11 +11,12 @@
     }
 
     $id = $_GET['course_id'];
-    $sql = "SELECT * FROM course_information WHERE course_id  = $id";
-    $result = mysqlexec($sql);
+    $sqls = "SELECT * FROM course_information WHERE course_id  = $id";
+    
+    $result = mysqlexec($sqls);
     if (mysqli_num_rows($result) > 0) {
         if ($result) {
-            $row = mysqli_fetch_assoc($result);
+            $rows = mysqli_fetch_assoc($result);
         }else{
             header("Location: admin_course_management.php");
             exit();
@@ -52,73 +53,110 @@
 
 
 ?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Information update</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Admin Course Information update</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="../styles/style-2.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+       
+            <?php include('admin_header.php') ?>
 
-</head>
-<body>
-
-
-
-<a href="admin_course_management.php"> <button class="btn btn-primary"> Back </button></a>
-<br>
-    <form action="" method="post">
-
-            <label for="departement">Choose Departement</label>
-            <select name="departement" id="">
-                <?php 
-                if ($row['departement'] == 'computer science'){
-                        echo '<option value="computer science" selected>Computer Science</option>
-                        <option value="Buisness and Adminstration">Buisness and Adminstration</option>
-                        <option value="Accounting"> Accounting </option>';
-                }
-
-                if ($row['departement'] == 'Buisness and Adminstration'){
-                    echo '<option value="computer science" >Computer Science</option>
-                    <option value="Buisness and Adminstration" selected>Buisness and Adminstration</option>
-                    <option value="Accounting"> Accounting </option>';
-                }
-
-                
-                if ($row['departement'] == 'Accounting'){
-                    echo '<option value="computer science" >Computer Science</option>
-                    <option value="Buisness and Adminstration">Buisness and Adminstration</option>
-                    <option value="Accounting" selected> Accounting </option>';
-                }
-
-
-                ?>
+        <div id="layoutSidenav">
             
-            </select>
-            <br>
+            <?php include('admin_side_bar.php') ?>
 
-            <label for="course_name">Course Name</label>
-            <input type="text" name="course_name" value="<?php echo $row['course_name'] ?>">
-            <br>
+            <div id="layoutSidenav_content">
+                <main>
+                    
+                    <div class="container-fluid px-4"> 
+                        <div class="row m-5">
+                            <div class="col">
+                                <a href="admin_course_management.php"> <button class="btn btn-secondary"> <- Back </button></a>
+                            </div>
+                        </div>
+                        <div class="row mx-5">
+                            <div class="col">
+                                <form action="" method="post">
 
-            <label for="course_credit_hour">Credit Hour</label>
-            <input type="number" max=35 min=1 name="course_credit_hour" value="<?php echo $row['course_credit_hour'] ?>">
-            <br>
+                                        <div class="form-group">
+                                            <label for="departement">Choose Departement</label>
+                                            <select id="inputState"  name="departement" class="form-control">
+                                                    <?php 
+                                                    if ($rows['departement'] == 'computer science'){
+                                                            echo '<option value="computer science" selected>Computer Science</option>
+                                                            <option value="Buisness and Adminstration">Buisness and Adminstration</option>
+                                                            <option value="Accounting"> Accounting </option>';
+                                                    }
 
-            <label for="course_description">Course Description</label>
-            <textarea name="course_description" id="" cols="30" rows="10"  style="resize: none;" ><?php echo $row['course_description']  ?></textarea>
-            <br>
+                                                    if ($rows['departement'] == 'Buisness and Adminstration'){
+                                                        echo '<option value="computer science" >Computer Science</option>
+                                                        <option value="Buisness and Adminstration" selected>Buisness and Adminstration</option>
+                                                        <option value="Accounting"> Accounting </option>';
+                                                    }
 
-            <div class="modal-footer">
-                <button type="submit" name="course_update_submit"  class="btn btn-lg btn-success">Update</button>
+                                                    
+                                                    if ($rows['departement'] == 'Accounting'){
+                                                        echo '<option value="computer science" >Computer Science</option>
+                                                        <option value="Buisness and Adminstration">Buisness and Adminstration</option>
+                                                        <option value="Accounting" selected> Accounting </option>';
+                                                    }
+
+                                            ?>
+                                            </select>
+                                        </div>
+                                        <br>
+
+                                        <div class="form-group">
+                                            <label for="course_name">Course Name</label>
+                                            <input type="text"  name="course_name" class="form-control" id="formGroupExampleInput" value="<?php echo $rows['course_name'] ?>">
+                                        </div>
+                                        <br>
+
+                                        <div class="form-group">
+                                            <label for="course_credit_hour">Credit Hour</label>
+                                            <input type="number" max=35 min=1  name="course_credit_hour" class="form-control" id="formGroupExampleInput" value="<?php echo $rows['course_credit_hour'] ?>">
+                                        </div>
+                                        <br>
+
+                                        <div class="form-group">
+                                            <label for="course_description">Course Description</label>
+                                            <textarea  name="course_description" id=""  class="form-control" id="exampleFormControlTextarea1" placeholder="Enter Course Description" rows="3" style="resize: none;"><?php echo $rows['course_description']  ?></textarea>
+                                        </div>
+                                        <br>
+
+
+                                        <div class="modal-footer my-3" style="display: flex;justify-content: center;">
+                                            <button type="submit" name="course_update_submit"  class="btn btn-lg btn-success">Update</button>
+                                        </div>
+
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
             </div>
+        </div>
 
-    </form>
 
-    
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
-
-</body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../scripts/script-2.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="../scripts/script-3.js"></script>
+    </body>
 </html>
