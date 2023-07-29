@@ -20,7 +20,7 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-school"></i></div>
                                 Manage Class Rooms
                             </a>
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="admin_teacher_management.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-teacher"></i></div>
                                 Manage Teacher
                             </a>

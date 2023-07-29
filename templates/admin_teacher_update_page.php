@@ -10,9 +10,9 @@
         header("location:../login.php");
     }
 
-    $id = $_GET['student_id'];
+    $id = $_GET['empl_id'];
     $sqls = "SELECT * FROM user_account WHERE student_jd  ='$id' ";
-    $sqls2 = "SELECT * FROM student_information WHERE student_id  = '$id' ";
+    $sqls2 = "SELECT * FROM teacher_information WHERE teacher_id  = '$id' ";
     $result1 = mysqlexec($sqls);
     $result2 = mysqlexec($sqls2);
     if ( mysqli_num_rows($result1) > 0 and  mysqli_num_rows($result2) > 0) {
@@ -22,19 +22,18 @@
                 $rows2 = mysqli_fetch_assoc($result2);
             }
         }else{
-            header("Location: admin_student_management.php");
+            header("Location: admin_teacher_management.php");
             exit();
         }
     }else{
-        header("Location: admin_student_management.php");
+        header("Location: admin_teacher_management.php");
         exit();
     }
 
 
-    if (isset($_POST['student_update_submit'])) {
+    if (isset($_POST['teacher_update_submit'])) {
        
         $departement = $_POST['departement'];
-        $schoold_id = $_POST['schoold_id'];
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name']; 
         $email = $_POST['email']; 
@@ -45,8 +44,8 @@
 
 
         if ($password_1 == $password_2){
-            $sql_update= "UPDATE user_account SET `first name`='".$first_name."',`father name`='".$last_name."',phone_number='".$phonenumber."',email='".$email."',password='".$password_1."',user_name='".$username."' WHERE student_jd='".$id."'";
-            $sql_update2 = "UPDATE student_information SET enrolled_departement='".$departement."'  WHERE student_id='".$id."'";
+            $sql_update= "UPDATE user_account SET `first name`='".$first_name."',`father name`='".$last_name."',phone_number='".$phonenumber."',email='".$email."',password='".$password_1."' ,user_name='".$username."' WHERE student_jd='".$id."'";
+            $sql_update2 = "UPDATE teacher_information SET department='".$departement."' WHERE teacher_id='".$id."'";
            
             try{
 
@@ -54,9 +53,8 @@
                 if ($result) {
                     $result2 = mysqlexec($sql_update2);
                     if($result2){
-                         header('location: admin_student_management.php');
+                         header('location: admin_teacher_management.php');
                     }
-
                    
                 } else {
                     // show the failed message holder modal 
@@ -67,7 +65,7 @@
             }
         }
 
-        header("admin_student_update_page.php?student_id='.$id.' ");
+        header("admin_teacher_update_page.php?empl_id='.$id.' ");
     }
 
 
@@ -86,7 +84,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Admin Student Information update</title>
+        <title>Admin Teacher Information update</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../styles/style-2.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -105,7 +103,7 @@
                     <div class="container-fluid px-4"> 
                         <div class="row m-5">
                             <div class="col">
-                                <a href="admin_student_management.php"> <button class="btn btn-secondary"> <- Back </button></a>
+                                <a href="admin_teacher_management.php"> <button class="btn btn-secondary"> <- Back </button></a>
                             </div>
                         </div>
                         <div class="row mx-5">
@@ -116,20 +114,20 @@
                                             <label for="departement">Choose Departement</label>
                                             <select id="inputState"  name="departement" class="form-control">
                                                     <?php 
-                                                    if ($rows2['enrolled_departement'] == 'computer science'){
+                                                    if ($rows2['department'] == 'computer science'){
                                                             echo '<option value="computer science" selected>Computer Science</option>
                                                             <option value="Buisness and Adminstration">Buisness and Adminstration</option>
                                                             <option value="Accounting"> Accounting </option>';
                                                     }
 
-                                                    if ($rows2['enrolled_departement'] == 'Buisness and Adminstration'){
+                                                    if ($rows2['department'] == 'Buisness and Adminstration'){
                                                         echo '<option value="computer science" >Computer Science</option>
                                                         <option value="Buisness and Adminstration" selected>Buisness and Adminstration</option>
                                                         <option value="Accounting"> Accounting </option>';
                                                     }
 
                                                     
-                                                    if ($rows2['enrolled_departement'] == 'Accounting'){
+                                                    if ($rows2['department'] == 'Accounting'){
                                                         echo '<option value="computer science" >Computer Science</option>
                                                         <option value="Buisness and Adminstration">Buisness and Adminstration</option>
                                                         <option value="Accounting" selected> Accounting </option>';
@@ -142,31 +140,31 @@
 
                                         
                                         <div class="form-group">
-                                                <label for="first_name">Student First Name</label>
+                                                <label for="first_name">First Name</label>
                                                 <input type="text"  name="first_name" class="form-control" id="formGroupExampleInput" value="<?php echo $rows['first name'] ?>">
                                         </div>
                                         <br>
 
                                         <div class="form-group">
-                                                <label for="last_name">Student Last Name</label>
+                                                <label for="last_name">Last Name</label>
                                                 <input type="text"  name="last_name" class="form-control" id="formGroupExampleInput" value="<?php echo $rows['father name'] ?>">
                                         </div>
                                         <br>
 
                                         <div class="form-group">
-                                                <label for="email">Student Email</label>
+                                                <label for="email">Email</label>
                                                 <input type="email"  name="email" class="form-control" id="formGroupExampleInput" value="<?php echo $rows['email'] ?>">
                                         </div>
                                         <br>
 
                                         <div class="form-group">
-                                            <label for="phonenumber">Student Phone Number</label>
+                                            <label for="phonenumber">Phone Number</label>
                                             <input type="tel"  name="phonenumber" class="form-control" id="formGroupExampleInput" value="<?php echo $rows['phone_number'] ?>">
                                         </div>
                                         <br>
 
                                         <div class="form-group">
-                                                <label for="username">Student user name</label>
+                                                <label for="username">user name</label>
                                                 <input type="text"  name="username" class="form-control" id="formGroupExampleInput" value="<?php echo $rows['user_name'] ?>">
                                         </div>
                                         <br>
@@ -187,7 +185,7 @@
                                       
 
                                         <div class="modal-footer my-3" style="display: flex;justify-content: center;">
-                                            <button type="submit" name="student_update_submit"  class="btn btn-lg btn-success">Update</button>
+                                            <button type="submit" name="teacher_update_submit"  class="btn btn-lg btn-success">Update</button>
                                         </div>
 
                                 </form>
