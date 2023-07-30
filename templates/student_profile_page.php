@@ -16,7 +16,7 @@
     if ($result1 && mysqli_num_rows($result1) > 0){
         $rows = mysqli_fetch_assoc($result1);
     }else{
-         header("Location: admin_index.php");
+         header("Location: student_index.php");
          exit();
     }
    
@@ -39,7 +39,7 @@
 
                 $result = mysqlexec($sql_update);
                 if ($result) {
-                    header("Location: admin_profile_page.php");
+                    header("Location: student_profile_page.php");
                 } else {
                     // show the failed message holder modal 
                 }
@@ -49,7 +49,7 @@
             }
         }
 
-        header("Location: admin_profile_page.php");
+        header("Location: student_profile_page.php");
     }
 
 
@@ -66,23 +66,45 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Admin Information update</title>
+        <title> Student Information update</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../styles/style-2.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../styles/style-1.css" />
     </head>
     <body class="sb-nav-fixed">
-       
-            <?php include('admin_header.php') ?>
+    <div class="row">
+        <div class="col">
+        <nav class="navbar navbar-expand-lg stroke fixed-top navbar-light bg-light">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="student_index.php">Home</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="login.php">Table Schedule</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#about">Calander Schedule</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="student_profile_page.php">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../logout.php">Logout</a>
+                            </li>
 
-        <div id="layoutSidenav">
-            
-            <?php include('admin_side_bar.php') ?>
+                        </ul>
+                    </div>
+                </nav>
+        </div>
+    </div>
 
-            <div id="layoutSidenav_content">
-                <main>
-                    
-                    <div class="container-fluid px-4"> 
+    <div class="container px-4 my-5" style="margin-top: 150px !important;"> 
                         <div class="row m-5">
                             <div class="col" style=" display: flex; justify-content: center;">
                                     <h2><b> Profile Page </b> </h2>
@@ -154,10 +176,6 @@
                         </div>
 
                     </div>
-                </main>
-            </div>
-        </div>
-
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../scripts/script-2.js"></script>
