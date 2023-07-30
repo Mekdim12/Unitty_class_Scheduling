@@ -1,7 +1,7 @@
 
 <!-- Navbar Brand-->
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand ps-3" href="index.html">
+    <a class="navbar-brand ps-3" href="admin_index.php">
 
         <?php
         $user_name = $_SESSION['user_name'];

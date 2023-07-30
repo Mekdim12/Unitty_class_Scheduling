@@ -36,8 +36,6 @@
         }catch(Exception $ex){
             // show the failed message holder modal
         }
-        
-        
 
     }
     if (isset($_POST['teacher_info_submit'])) {
