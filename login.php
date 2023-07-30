@@ -2,6 +2,20 @@
 <?php require_once("db_connection/db_conn.php"); ?>
 <?php include_once("includes/basic_functions.php");?> 
 <?php 
+    if(isset($_SESSION['user_name']) && !empty($_SESSION['user_name'])) {
+        $username = $_SESSION['user_name'];
+        $sql = "SELECT * FROM user_account WHERE user_name = '$username' ";
+        $result = mysqlexec($sql);
+        $row = mysqli_fetch_assoc($result);
+        $acc_type = $row['account_type'];
+        if ($acc_type == "Admin"){
+            header('Location: templates/admin_index.php');
+        }else if($acc_type == "Student"){
+            header('Location: templates/student_index.php');
+        }
+
+
+     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
@@ -15,8 +29,14 @@
             if ($result) {
                 $row = mysqli_fetch_assoc($result);
                 $_SESSION['user_name'] = $row['user_name'];
-        
-                header('Location: templates/admin_index.php');
+                
+                $acc_type = $row['account_type'];
+                if ($acc_type == "Admin"){
+                    header('Location: templates/admin_index.php');
+                }else if($acc_type == "Student"){
+                    header('Location: templates/student_index.php');
+                }
+     
                 
             } else {
                 echo "<br> <h2> Nottt Working</h2>";
