@@ -86,10 +86,10 @@
                                 <a class="nav-link" href="student_index.php">Home</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="login.php">Table Schedule</a>
+                                <a class="nav-link" href="student_table_schedule.php">Table Schedule</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#about">Calander Schedule</a>
+                                <a class="nav-link" href="student_calander_schedule.php">Calander Schedule</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="student_profile_page.php">Profile</a>

@@ -19,12 +19,8 @@
 
     <body class="sb-nav-fixed">
 
-      
-
-
-
-        
-        <div class="TopHolder">
+        <div class="row">
+            <div class="col">
                 <nav class="navbar navbar-expand-lg stroke fixed-top navbar-light bg-light">
                     <a class="navbar-brand" href="#"></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,49 +47,154 @@
                         </ul>
                     </div>
                 </nav>
-            <br>
-            <div class="topGreetingHolder">
-                <div class="row">
-                    <div class="col greetingTextHolder_" >
-                        <div class="greetingTextHolder" style="margin-left: 25px;">
-                            <img src="../assets/unitty_university.png" class="img-fluid" style="width: 150px; height: 150px;" alt="">
-                           <h2>Welcome 
-                                <span style="color: #FFB52E;" id="to_be_animated">
-
-                                    <?php
-                                        $username = $_SESSION['user_name'];
-                                        $sql = "SELECT * FROM user_account WHERE user_name='$username'";
-                                        $result_1 = mysqlexec($sql);
-                                        $row = mysqli_fetch_assoc($result_1);
-
-                                        $full_name = $row['first name'].' '.$row['father name'];
-
-                                        echo $full_name;
-
-                                    ?>
-                        
-                        
-                                </span>
-                            </h2> 
-                            <br/>
-                            <p>
-                                <q>
-                                The rich fruit of spontaneity grows in the garden that is well tended by the discipline of schedule. - John Piper
-                                </q>
-                            </p>
-                           <a href="login.php">  <button class="btn btn-lg btn-light mt-5 gettingstarted" style="width: 200px; border: 2px solid #FFB52E;">Go to Schedule</button> </a>
-
-                        </div>
-                    </div>
-
-                    <div class="col rightSideTextHolder_">
-                        <div class="rightSideTextHolder">
-                        </div>
-                    </div>
-                </div>
             </div>
-
         </div>
+
+
+        <br>
+
+
+
+        <div class="row m-3 p-2">
+                            <div class="col text-center" style="justify-content: centers; margin-top:3rem;">
+                                    <h1><u><em><strong> Schedule's List </strong></em> </u></h1>
+                            </div>
+                       </div>
+
+                       
+
+                        <div class="card mb-4">
+                            <div class="card-header bg-secondary text-light">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Class Room Name</th>
+                                            <th>Class Room Type</th>
+                                            <th>Departement</th>
+                                            <th>Assinged Teacher</th>
+                                            <th>scheduled Time</th>
+                                            <th>Weekday</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Class Room Name</th>
+                                            <th>Class Room Type</th>
+                                            <th>Departement</th>
+                                            <th>Assinged Teacher</th>
+                                            <th>scheduled Time</th>
+                                            <th>Weekday</th>
+                                           
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+
+
+                                    <?php 
+
+                                            $username_from_session = $_SESSION['user_name'];
+                                            $dep = "SELECT * FROM user_account WHERE user_name='$username_from_session'";
+                                            $res_dep = mysqlexec($dep);
+                                            $student_id = mysqli_fetch_assoc($res_dep);
+                                            $student_id = $student_id['student_jd'];
+
+
+                                            $student_info = "SELECT * FROM student_information WHERE student_id='$student_id'";
+                                            $res_dep_student = mysqlexec($student_info);
+                                            $departement = mysqli_fetch_assoc($res_dep_student);
+                                            $departement_student_id = $departement['enrolled_departement'];
+
+                                            
+
+
+                                            $sql = "SELECT * FROM schedule WHERE departement='$departement_student_id'" ;
+
+                                            try{
+                                                $result_1 = mysqlexec($sql);
+
+                                                if (mysqli_num_rows($result_1) > 0 ) {
+                                                    $row_counter = 1;
+
+                                                    foreach($result_1 as $values1){
+                                                        $room_name = "";
+                                                        $room_type = "";
+                                                        $teacher_full_name = "";
+
+                                                        $room_id =  $values1['class_room_id'];
+                                                        $class_room_sql = "SELECT * FROM class_room WHERE class_room_id='$room_id'";
+                                                        $roomresult = mysqlexec($class_room_sql);
+                                                        foreach($roomresult as $room_information){
+                                                            $room_name = $room_information['special_room_name'];
+                                                            $room_type = $room_information['room_type'];
+                                                        }
+
+                                                        $teacher_id = $values1['teacher_id'];
+                                                        $teacher_sql = "SELECT * FROM user_account WHERE student_jd='$teacher_id'";
+                                                        $teacher_result = mysqlexec($teacher_sql);
+                                                        foreach($teacher_result as $teacher_info){
+                                                           $teacher_full_name = $teacher_info['first name'].' '.$teacher_info['father name']; 
+                                                        }
+                                                        
+                                                        $weekdays = explode('-',$values1['weekdays']);
+                                                        $resolved_weekday = array();
+
+                                                        foreach($weekdays as $day){
+
+                                                            if ($day == 1 || $day == '1'){
+                                                                array_push($resolved_weekday, "Monday");
+                                                            }else if ($day == 2 || $day == '2'){
+                                                                array_push($resolved_weekday, "Tuesday");
+                                                            }else if ($day == 3 || $day == '3'){
+                                                                array_push($resolved_weekday, "Wednesday");
+                                                            }else if ($day == 4 || $day == '4'){
+                                                                array_push($resolved_weekday, "Thursday");
+                                                            }else if ($day == 5 || $day == '5') {
+                                                                array_push($resolved_weekday, "Friday");
+                                                            }else if ($day == 6 || $day == '6'){
+                                                                array_push($resolved_weekday, "Saturday");
+                                                            }
+
+                                                        }
+
+                                                        echo '
+                                                            <tr>
+                                                                <td>'.$room_name.'</td>
+                                                                <td>'.$room_type.'</td>
+                                                                <td>'.$values1['departement'].'</td>
+                                                                <td>'.$teacher_full_name.'</td>
+                                                                <td>'.$values1['time_from'].' to '.$values1['time_to'].'</td>
+                                                                <td>
+                                                                <select class="form-control">';
+                                                      
+                                                                        foreach($resolved_weekday as $row){
+                                                                                echo '<option>'.$row.' </option>';
+                                                                        }
+                                                                    
+                                                        echo '  </select>
+                                                                </td>
+                                                              </tr>';   
+
+                                                    }
+
+                                                }
+
+                                            }catch(Exception $ex){
+
+                                            }
+
+
+                                            ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
 
 
         
