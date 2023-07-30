@@ -36,28 +36,63 @@
 
             <div id="layoutSidenav_content">
                 <main>
+
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Admin Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Admin Dashboard</li>
-                        </ol>
-                        <div class="row my-5" style="margin-top: 100px !important;">
+                        <h1 class="mt-3">Admin Dashboard</h1>
+                        <div class="row">
+                            <div class="col" style="display: flex; justify-content: center;">
+                                <img  class="img-fluid" style="width: 200px;" src="../assets/unitty_university.png" alt="">
+                            </div>
+                        </div>
+                        
+                        <div class="row my-3" style="margin-top: 100px !important;">
                             <div class="col-xl-4 col-md-6"  >
                                 <div class="card text-white mb-4" id="custome_box_shadow">
                                     <div class="card-header bg-secondary "> <strong>Total Student</strong></div>
-                                    <div class="card-body text-primary fw-bold fs-1" style="display:flex; justify-content: center;" >5</div>
+                                    <div class="card-body text-primary fw-bold fs-1" style="display:flex; justify-content: center;" >
+                                        <?php
+                                            $sql = "SELECT  * FROM student_information";
+                                            $result_1 = mysqlexec($sql);
+                                            if ($result_1){
+                                                echo mysqli_num_rows($result_1) ;
+                                            }else{
+                                                echo 0;
+                                            }
+                                        ?>
+                                </div>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="card text-white mb-4" id="custome_box_shadow">
                                     <div class="card-header bg-secondary "> <strong>Total Course</strong></div>
-                                    <div class="card-body text-danger fw-bold fs-1" style="display:flex; justify-content: center;" >5</div>
+                                    <div class="card-body text-danger fw-bold fs-1" style="display:flex; justify-content: center;" >
+                                        <?php
+                                            $sql = "SELECT  * FROM course_information";
+                                            $result_1 = mysqlexec($sql);
+                                            if ($result_1){
+                                                echo mysqli_num_rows($result_1) ;
+                                            }else{
+                                                echo 0;
+                                            }
+                                        ?>    
+                                
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="card  text-white mb-4" id="custome_box_shadow">
                                     <div class="card-header bg-secondary"> <strong>Total Class Rooms </strong></div>
-                                    <div class="card-body text-success fw-bold fs-1" style="display:flex; justify-content: center;" >5</div>
+                                    <div class="card-body text-success fw-bold fs-1" style="display:flex; justify-content: center;" >
+                                        <?php
+                                            $sql = "SELECT  * FROM class_room";
+                                            $result_1 = mysqlexec($sql);
+                                            if ($result_1){
+                                                echo mysqli_num_rows($result_1) ;
+                                            }else{
+                                                echo 0;
+                                            }
+                                        ?> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -65,17 +100,37 @@
                         <div class="row my-5" style="margin-top: 150px !important;">
                             <div class="col-xl-6 col-md-6">
                                 <div class="card  text-white mb-4" id="custome_box_shadow">
-                                    <div class="card-header bg-secondary">Total Student</div>
-                                    <div class="card-body text-danger fw-bold fs-1" style="display:flex; justify-content: center;" >5</div>
+                                    <div class="card-header bg-secondary">Total Teacher</div>
+                                    <div class="card-body text-danger fw-bold fs-1" style="display:flex; justify-content: center;" >
+                                        <?php
+                                            $sql = "SELECT  * FROM teacher_information";
+                                            $result_1 = mysqlexec($sql);
+                                            if ($result_1){
+                                                echo mysqli_num_rows($result_1) ;
+                                            }else{
+                                                echo 0;
+                                            }
+                                        ?> 
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-md-6">
                                 <div class="card  text-white mb-4" id="custome_box_shadow">
-                                    <div class="card-header bg-secondary">Total Course</div>
-                                    <div class="card-body text-success fw-bold fs-1" style="display:flex; justify-content: center;" >5</div>
+                                    <div class="card-header bg-secondary">Total Schedules</div>
+                                    <div class="card-body text-success fw-bold fs-1" style="display:flex; justify-content: center;" >
+                                        <?php
+                                            $sql = "SELECT  * FROM schedule";
+                                            $result_1 = mysqlexec($sql);
+                                            if ($result_1){
+                                                echo mysqli_num_rows($result_1) ;
+                                            }else{
+                                                echo 0;
+                                            }
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
-                           
+                            
                         </div>
                         
                     </div>

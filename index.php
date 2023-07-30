@@ -42,6 +42,7 @@
                 <div class="row">
                     <div class="col greetingTextHolder_">
                         <div class="greetingTextHolder">
+                            <img src="assets/unitty_university.png" class="img-fluid" style="width: 150px; height: 150px;" alt="">
                            <h2>Welcome <span style="color: #FFB52E;" id="to_be_animated">to unitty scheduling</span></h2> 
                             <br/>
                             <p>
@@ -212,11 +213,15 @@
                             <div class="col addressHolder">
                                 <ul>
                                     <h5><img src="https://img.icons8.com/material-two-tone/24/null/phone--v1.png" /> Phone Number</h5>
-                                    <li style="list-style: none; padding-left: 40px;"><img src="https://img.icons8.com/metro/15/null/checkmark.png" /> 09240215454</li>
+                                    <li style="list-style: none; padding-left: 40px;"><img src="https://img.icons8.com/metro/15/null/checkmark.png" /> +251</li>
                                     <h5><img src="https://img.icons8.com/ios-glyphs/24/null/map-marker.png" />Location</h5>
-                                    <li style="list-style: none; padding-left: 40px;"><img src="https://img.icons8.com/metro/15/null/checkmark.png" /> DebreTabor Uinversity , Departement of Computer Science Building 2n floor</li>
+                                    <li style="list-style: none; padding-left: 40px;"><img src="https://img.icons8.com/metro/15/null/checkmark.png" />Unity University (University),
+                                        Gerji,
+                                        Bole,<br>
+                                        Addis Ababa, Ethiopia
+                                        </li>
                                     <h5><img src="https://img.icons8.com/ios-glyphs/24/null/internet--v1.png" />Website</h5>
-                                    <li style="list-style: none; padding-left: 40px;"><img src="https://img.icons8.com/metro/15/null/checkmark.png" /> www.gadec.com</li>
+                                    <li style="list-style: none; padding-left: 40px;"><img src="https://img.icons8.com/metro/15/null/checkmark.png" /><a href="http://www.uu.edu.et/">http://www.uu.edu.et/</a></li>
                                 </ul>
                             </div>
                         </div>

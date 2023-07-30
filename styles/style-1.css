@@ -5,6 +5,7 @@ body{
     overflow-x: hidden;
     font-family: 'Ubuntu Condensed', sans-serif;
     scroll-behavior: smooth;
+    background-color: #FFF !important;
 }   
 
 .TopHolder{
@@ -83,7 +84,7 @@ nav ul {
   }
   .rightSideTextHolder_{
     opacity: 0.85;
-    background: linear-gradient(to bottom right, #f8f9fa 0%, #f8f9fa 50%, #FFB52E 50%,#FFB52E 100%);
+    background: linear-gradient(to bottom right, #FFF 0%, #FFF 50%, #FFB52E 50%,#FFB52E 100%);
   }
 
   .greetingTextHolder{
@@ -163,6 +164,6 @@ h2 span {
     text-decoration:line-through;
 }
 #forbackground{
-  background: linear-gradient(to bottom right, #f8f9fa 0%, #f8f9fa 50%, rgba(255, 181, 46, 0.5) 50%,rgba(255, 181, 46, 0.5) 100%); 
+  background: linear-gradient(to bottom right, #FFF 0%, #FFF 50%, rgba(255, 181, 46, 0.5) 50%,rgba(255, 181, 46, 0.5) 100%); 
 
 }
