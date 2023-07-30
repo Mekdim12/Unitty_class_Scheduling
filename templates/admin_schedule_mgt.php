@@ -113,6 +113,10 @@
 
                                     <?php 
 
+
+                                            
+
+
                                             $sql = "SELECT * FROM schedule";
 
                                             try{
@@ -125,6 +129,28 @@
                                                         $room_name = "";
                                                         $room_type = "";
                                                         $teacher_full_name = "";
+
+                                                        $weekdays = explode('-',$values1['weekdays']);
+                                                        $resolved_weekday = array();
+
+                                                        foreach($weekdays as $day){
+
+                                                            if ($day == 1 || $day == '1'){
+                                                                array_push($resolved_weekday, "Monday");
+                                                            }else if ($day == 2 || $day == '2'){
+                                                                array_push($resolved_weekday, "Tuesday");
+                                                            }else if ($day == 3 || $day == '3'){
+                                                                array_push($resolved_weekday, "Wednesday");
+                                                            }else if ($day == 4 || $day == '4'){
+                                                                array_push($resolved_weekday, "Thursday");
+                                                            }else if ($day == 5 || $day == '5') {
+                                                                array_push($resolved_weekday, "Friday");
+                                                            }else if ($day == 6 || $day == '6'){
+                                                                array_push($resolved_weekday, "Saturday");
+                                                            }
+
+                                                        }
+
 
                                                         $room_id =  $values1['class_room_id'];
                                                         $class_room_sql = "SELECT * FROM class_room WHERE class_room_id='$room_id'";
@@ -149,7 +175,12 @@
                                                                 <td>'.$values1['departement'].'</td>
                                                                 <td>'.$teacher_full_name.'</td>
                                                                 <td>'.$values1['time_from'].' to '.$values1['time_to'].'</td>
-                                                                <td>'.$values1['weekdays'].'</td>
+                                                                <td> <select class="form-control">';
+                                                                foreach($resolved_weekday as $row){
+                                                                    echo '<option>'.$row.' </option>';
+                                                                }
+                                                             echo ' </select>
+                                                                </td>   
                                                                 <td><a href="admin_schedule_update_page.php?schedule_id='.$values1['schedule_id'].'"> <button class="btn btn-success"> Update </button> </a></td>
                                                                 <td> <form method="POST" action=""><input  name="schedule_id" type="hidden" value="'.$values1['schedule_id'].'"><input type="submit" class="btn btn-danger" name="delete_button" value="Delete"></form> </td>
                                                              </tr>';   
